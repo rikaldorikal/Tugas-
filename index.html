@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Rikaldo</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        :root {
+            --background: #0b0b14;
+            --surface: #151522;
+            --primary: #a78bfa;
+            --secondary: #c4b5fd;
+            --text: #f5f5fa;
+            --muted: #a1a1b5;
+            --border: rgba(255,255,255,.09);
+        }
+        body { font-family: Arial, Helvetica, sans-serif; background: var(--background); color: var(--text); line-height: 1.7; }
+        a { color: inherit; text-decoration: none; }
+        section { scroll-margin-top: 100px; }
+        header { position: sticky; top: 0; z-index: 1000; background: rgba(11,11,20,.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        .navbar { max-width: 1150px; min-height: 75px; margin: auto; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; gap: 25px; }
+        .logo { font-size: 23px; font-weight: bold; white-space: nowrap; }
+        .logo span { color: var(--primary); }
+        .nav-menu { display: flex; align-items: center; gap: 25px; list-style: none; }
+        .nav-menu a { color: var(--muted); font-size: 14px; transition: .3s; }
+        .nav-menu a:hover { color: var(--primary); }
+        .hero { max-width: 1150px; min-height: 570px; margin: auto; padding: 90px 25px; display: flex; align-items: center; justify-content: space-between; gap: 60px; }
+        .hero-content { flex: 1; }
+        .greeting { color: var(--primary); font-size: 12px; font-weight: bold; letter-spacing: 2px; margin-bottom: 18px; }
+        .hero h1 { font-size: clamp(35px, 5vw, 58px); line-height: 1.2; margin-bottom: 15px; }
+        .hero h1 span { color: var(--primary); }
+        .hero h2 { color: var(--muted); font-size: 25px; font-weight: normal; margin-bottom: 20px; }
+        .hero-description { color: var(--muted); max-width: 600px; margin-bottom: 30px; }
+        .hero-buttons { display: flex; flex-wrap: wrap; gap: 15px; }
+        .btn { display: inline-block; padding: 12px 23px; border-radius: 8px; font-size: 14px; font-weight: bold; transition: .3s; }
+        .primary { background: var(--primary); color: #171126; }
+        .primary:hover { background: var(--secondary); transform: translateY(-3px); }
+        .secondary { border: 1px solid var(--border); }
+        .secondary:hover { border-color: var(--primary); color: var(--primary); }
+        .hero-image { flex-shrink: 0; width: 290px; height: 390px; padding: 8px; border: 2px solid var(--primary); border-radius: 150px 150px 30px 30px; background: var(--surface); box-shadow: 0 0 40px rgba(167,139,250,.12); }
+        .hero-image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; border-radius: 145px 145px 23px 23px; }
+        .section { max-width: 1150px; margin: auto; padding: 85px 25px; }
+        .section-heading { text-align: center; margin-bottom: 45px; }
+        .section-heading p { color: var(--primary); font-size: 12px; font-weight: bold; letter-spacing: 3px; margin-bottom: 10px; }
+        .section-heading h2 { font-size: clamp(26px, 4vw, 35px); }
+        .about-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; }
+        .about-card, .about-info { background: var(--surface); border: 1px solid var(--border); border-radius: 15px; padding: 30px; }
+        .about-card h3 { font-size: 23px; margin-bottom: 15px; }
+        .about-card p { color: var(--muted); margin-bottom: 15px; }
+        .info-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; padding: 15px 0; border-bottom: 1px solid var(--border); }
+        .info-item:last-child { border-bottom: none; }
+        .info-item span { color: var(--muted); }
+        .info-item strong { text-align: right; font-size: 14px; }
+        .education-section { max-width: none; background: #10101c; }
+        .education-section .section-heading { max-width: 1100px; margin-left: auto; margin-right: auto; }
+        .education-card { max-width: 800px; margin: auto; padding: 30px; display: flex; align-items: flex-start; gap: 25px; background: var(--surface); border: 1px solid var(--border); border-radius: 15px; transition: .3s; }
+        .education-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .education-icon { font-size: 35px; background: #1c1c2b; border-radius: 12px; padding: 12px; }
+        .education-content h3 { font-size: 22px; margin-bottom: 12px; }
+        .education-content p { color: var(--muted); margin-bottom: 15px; }
+        .education-year { color: var(--primary); font-size: 13px; font-weight: bold; }
+        .contact-section { text-align: center; }
+        .contact-description { max-width: 600px; margin: -20px auto 30px; color: var(--muted); }
+        .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; }
+        .contact-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-width: 170px; padding: 13px 25px; border: 1px solid var(--border); border-radius: 10px; font-weight: bold; transition: .3s; }
+        .contact-button span { font-size: 22px; }
+        .whatsapp:hover { background: #25d366; color: #07170c; border-color: #25d366; transform: translateY(-4px); }
+        .instagram:hover { background: #c13584; color: white; border-color: #c13584; transform: translateY(-4px); }
+        footer { padding: 25px; text-align: center; background: #080810; border-top: 1px solid var(--border); }
+        footer p { color: var(--muted); font-size: 13px; }
+        @media (max-width: 900px) {
+            .navbar { flex-direction: column; gap: 12px; }
+            .nav-menu { justify-content: center; flex-wrap: wrap; gap: 15px; }
+            .hero { gap: 35px; }
+            .hero-image { width: 240px; height: 320px; }
+        }
+        @media (max-width: 600px) {
+            .navbar { padding: 15px; }
+            .nav-menu { gap: 10px 18px; }
+            .nav-menu a { font-size: 12px; }
+            .hero { min-height: auto; padding: 60px 22px; flex-direction: column-reverse; text-align: center; gap: 35px; }
+            .hero-image { width: 210px; height: 280px; }
+            .hero-description { font-size: 14px; }
+            .hero-buttons { justify-content: center; }
+            .section { padding: 65px 20px; }
+            .about-content { grid-template-columns: 1fr; }
+            .about-card, .about-info { padding: 22px; }
+            .info-item { gap: 10px; }
+            .info-item strong { max-width: 55%; overflow-wrap: anywhere; }
+            .education-card { padding: 22px; flex-direction: column; gap: 15px; }
+            .contact-links { flex-direction: column; align-items: stretch; }
+            .contact-button { width: 100%; }
+            footer { padding: 22px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="#home" class="logo">MyPortfolio<span>.</span></a>
+            <ul class="nav-menu">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang Saya</a></li>
+                <li><a href="#education">Pendidikan</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <p class="greeting">SELAMAT DATANG DI PORTOFOLIO SAYA</p>
+            <h1>Halo, Saya <span>Rikaldo</span></h1>
+            <h2>Mahasiswa</h2>
+            <p class="hero-description">
+                Selamat datang di website portofolio pribadi saya.
+                Website ini berisi informasi tentang diri saya,
+                riwayat pendidikan, dan media sosial untuk menghubungi saya.
+            </p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn primary">Tentang Saya</a>
+                <a href="#contact" class="btn secondary">Hubungi Saya</a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="profil.png" alt="Foto profil Rikaldo">
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="section-heading">
+            <p>PERKENALAN</p>
+            <h2>Tentang Saya</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-card">
+                <h3>Halo, Saya Rikaldo!</h3>
+                <p>
+                    Saya adalah seorang mahasiswa yang sedang menempuh
+                    pendidikan tinggi. Saya berusaha mengembangkan
+                    pengetahuan dan pengalaman melalui kegiatan perkuliahan
+                    serta berbagai pengalaman belajar.
+                </p>
+                <p>
+                    Website ini dibuat sebagai portofolio pribadi untuk
+                    memperkenalkan diri dan memberikan informasi mengenai
+                    riwayat pendidikan saya.
+                </p>
+            </div>
+            <div class="about-info">
+                <div class="info-item"><span>Nama</span><strong>Rikaldo</strong></div>
+                <div class="info-item"><span>NIM</span><strong>240741008</strong></div>
+                <div class="info-item"><span>Status</span><strong>Mahasiswa</strong></div>
+                <div class="info-item"><span>Pendidikan</span><strong>Perguruan Tinggi</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section education-section">
+        <div class="section-heading">
+            <p>RIWAYAT AKADEMIK</p>
+            <h2>Pendidikan</h2>
+        </div>
+        <div class="education-card">
+            <div class="education-icon">🎓</div>
+            <div class="education-content">
+                <h3>Pendidikan Perguruan Tinggi</h3>
+                <p>
+                    Saya sedang menjalani pendidikan sebagai mahasiswa dan
+                    terus belajar untuk menambah pengetahuan serta pengalaman.
+                </p>
+                <span class="education-year">Mahasiswa Aktif</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <div class="section-heading">
+            <p>MEDIA SOSIAL</p>
+            <h2>Hubungi Saya</h2>
+        </div>
+        <p class="contact-description">
+            Kamu dapat menghubungi saya melalui WhatsApp atau mengikuti
+            akun Instagram saya.
+        </p>
+        <div class="contact-links">
+            <!-- Ganti nomor contoh dengan nomor WhatsApp kamu -->
+            <a href="https://wa.me/6281366902587" target="_blank"
+               rel="noopener noreferrer" class="contact-button whatsapp">
+                <span>☏</span> WhatsApp
+            </a>
+            <!-- Ganti username contoh dengan username Instagram kamu -->
+            <a href="https://www.instagram.com/rikal_004/" target="_blank"
+               rel="noopener noreferrer" class="contact-button instagram">
+                <span>◎</span> Instagram
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Rikaldo. Dibuat dengan HTML dan CSS.</p>
+    </footer>
+</body>
+</html>
